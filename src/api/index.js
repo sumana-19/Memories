@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3001/",
+  baseURL: "https://memories-sumana.herokuapp.com",
 });
 
 //"https://memories-sumana.herokuapp.com"
@@ -33,7 +33,8 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const deleteComment = (pid, cid) =>
   API.delete(`/posts/${pid}/comment/${cid}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
-export const likeComment = (pid,cid) => API.patch(`/posts/${pid}/comment/${cid}`);
+export const likeComment = (pid, cid) =>
+  API.patch(`/posts/${pid}/comment/${cid}`);
 
 export const signUp = (formData) => API.post("/user/signup", formData);
 export const signIn = (formData) => API.post("/user/signin", formData);
