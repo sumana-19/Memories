@@ -39,10 +39,10 @@ const Auth = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); //Prevents reload of page on Submit
+    e.preventDefault();
 
     if (isSignup) {
-      dispatch(signup(formData, history)); //dispatching an action using action creators
+      dispatch(signup(formData, history)); 
     } else {
       dispatch(signin(formData, history));
     }
@@ -63,9 +63,12 @@ const Auth = () => {
     const token = res?.tokenId;
 
     try {
-      dispatch({ type: "AUTH", data: { result, token } }); //dispatching an action directly
+      //const userID = api.getUserIdFromGoogleToken(googleToken)
+      // OR
+      //const userToken = api.getTokenFromGoogleToken(googleToken)
+      dispatch({ type: "AUTH", data: { result, token } });
 
-      history.push("/"); //Redirects to home once login is done
+      history.push("/"); 
     } catch (error) {
       console.log(error);
     }

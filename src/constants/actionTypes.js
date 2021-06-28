@@ -9,4 +9,7 @@ export const SEARCH = "SEARCH";
 export const START_LOADING = "START_LOADING";
 export const END_LOADING = "END_LOADING";
 export const LIKE = "LIKE";
+export const LIKECOMMENT = "LIKECOMMENT";
 export const FETCH_POST = "FETCH_POST";
+export const COMMENT = "COMMENT";
+export const DELETECOMM = "DELETECOMM";

@@ -3,12 +3,14 @@ import {
   CREATE,
   DELETE,
   UPDATE,
-  SEARCH,
   FETCH_BY_SEARCH,
   START_LOADING,
   END_LOADING,
   FETCH_POST,
   LIKE,
+  COMMENT,
+  DELETECOMM,
+  LIKECOMMENT,
 } from "../constants/actionTypes";
 import * as api from "../api";
 
@@ -33,7 +35,7 @@ export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
@@ -85,27 +87,33 @@ export const likePost = (id) => async (dispatch) => {
     const { data } = await api.likePost(id);
     dispatch({ type: LIKE, payload: data });
   } catch (error) {
-    console.error();
+    console.log(error);
   }
 };
 
-// export const createPost = (post) => async (dispatch) => {
-//   try {
-//     const { data } = await api.createPost(post);
+export const createComment = (comment, id) => async (dispatch) => {
+  try {
+    const { data } = await api.createComment(comment, id);
+    dispatch({ type: COMMENT, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-//     dispatch({ type: "CREATE", payload: data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const deleteComment = (pid, cid) => async (dispatch) => {
+  try {
+    await api.deleteComment(pid, cid);
+    dispatch({ type: DELETECOMM, payload: { pid, cid } });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// export const createPost = (post) => {
-//   return (dispatch) => {
-//     api.createPost(post).then((response) =>
-//       dispatch({
-//         type: CREATE,
-//         payload: response.data,
-//       })
-//     );
-//   };
-//};
+export const likeComment = (pid, cid) => async (dispatch) => {
+  try {
+    const { data } = await api.likeComment(pid, cid);
+    dispatch({ type: LIKECOMMENT, payload: { pid, data } });
+  } catch (error) {
+    console.log(error);
+  }
+};

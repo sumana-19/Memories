@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://memories-sumana.herokuapp.com",
+  baseURL: "http://localhost:3001/",
 });
 
-//let url = "https://memories-sumana.herokuapp.com/posts";
+//"https://memories-sumana.herokuapp.com"
 
 //For sending the token to the middleware
 API.interceptors.request.use((req) => {
@@ -25,10 +25,15 @@ export const fetchPostsBySearch = (searchQuery) =>
     }`
   );
 export const createPost = (newPost) => API.post("/posts", newPost);
+export const createComment = (comment, id) =>
+  API.put(`/posts/${id}/comment`, comment);
 export const updatePost = (id, updatedPost) =>
   axios.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
+export const deleteComment = (pid, cid) =>
+  API.delete(`/posts/${pid}/comment/${cid}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const likeComment = (pid,cid) => API.patch(`/posts/${pid}/comment/${cid}`);
 
 export const signUp = (formData) => API.post("/user/signup", formData);
 export const signIn = (formData) => API.post("/user/signin", formData);

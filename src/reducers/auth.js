@@ -1,4 +1,3 @@
-import { Switch } from "@material-ui/core";
 import { AUTH, LOGOUT, SEARCH } from "../constants/actionTypes";
 
 const authReducer = (state = { authData: null }, action) => {
@@ -10,9 +9,6 @@ const authReducer = (state = { authData: null }, action) => {
     case LOGOUT:
       localStorage.clear();
       return { ...state, authData: null };
-
-    case SEARCH:
-      return {};
 
     default:
       return state;

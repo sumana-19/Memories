@@ -10,6 +10,7 @@ import moment from "moment";
 import { useHistory, useParams } from "react-router-dom";
 import useStyles from "./styles";
 import { getPost, getPostsBySearch } from "../../actions/posts";
+import Comments from "./Comments/Comments";
 
 const PostDetails = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -78,6 +79,8 @@ const PostDetails = () => {
           />
         </div>
       </div>
+      <Divider />
+      <Comments className={classes.comment} />
       {recommendedPosts.length != 0 && (
         <div className={classes.section}>
           <Typography gutterBottom variant="h5">
